@@ -10323,3 +10323,9 @@ th.hide-for-touch {
     display: table-cell !important;
   }
 }
+/* line 2, ../scss/_style.scss */
+#canvas {
+  border: 1px solid #666;
+  width: 550px;
+  height: 400px;
+}
