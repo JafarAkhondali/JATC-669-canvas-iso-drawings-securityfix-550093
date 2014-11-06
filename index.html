@@ -13,6 +13,8 @@
 			var camera = new THREE.PerspectiveCamera( 5000, window.innerWidth/window.innerHeight, 0.1, 10000 );
 			var renderer = new THREE.WebGLRenderer();
 
+			
+
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
 
@@ -25,7 +27,11 @@
 			var cube2 = new THREE.Mesh( geometry, material );
 			scene.add( cube, cube2 ); 
 
-			camera.position.z = 300;
+			cube.position.x = 25;
+
+			camera.position.set(300,300,300);
+			camera.up = new THREE.Vector3(0,0,1);
+			camera.lookAt(new THREE.Vector3(10,0,0));
 			
 			var render = function () {
 				requestAnimationFrame( render );
@@ -34,23 +40,65 @@
 
 			render()
 
+
 			var flip = function () {
-			cube.rotation.x += .15;
-			cube2.rotation.x += .15;
+			cube.rotation.x += 1;
+			cube2.rotation.x += 1;
 			renderer.render(scene, camera);
 			}
 
 			var rotate = function () {
-			cube.rotation.y += .15;
-			cube2.rotation.y += .15;
+			cube.rotation.y += 1;
+			cube2.rotation.y += 1;
 			renderer.render(scene, camera);
 			}
 
 			var spin = function () {
-			cube.rotation.z += .15;
-			cube2.rotation.z += .15;
+			cube.rotation.z += 1;
+			cube2.rotation.z += 1;
 			renderer.render(scene, camera);
 			}
+
+			var cameraRight = function () {
+				camera.position.x += 1;
+				renderer.render(scene, camera);
+			}
+
+			var cameraLeft = function () {
+				camera.position.x += -1;
+				renderer.render(scene, camera);
+			}
+
+			var cameraZoomOut = function () {
+				camera.position.z += 20;
+				renderer.render(scene, camera);
+			}
+
+			var cameraZoomIn = function () {
+				camera.position.z += -20;
+				renderer.render(scene, camera);
+			}
+
+			var cameraRotateLeft = function () {
+				camera.rotation.y += -.1;
+				renderer.render(scene, camera);
+			}
+
+			var cameraRotateRight = function () {
+				camera.rotation.y += .1;
+				renderer.render(scene, camera);
+			}
+
+			var cameraPanUp = function () {
+				camera.rotation.x += -.1;
+				renderer.render(scene, camera);
+			}
+
+			var cameraPanDown = function () {
+				camera.rotation.x += .1;
+				renderer.render(scene, camera);
+			}
+
 
 
 			
@@ -60,5 +108,13 @@
 		<button onclick="flip()">FLIP</button>
 		<button onclick="rotate()">ROTATE</button>
 		<button onclick="spin()">SPIN</button>
+		<button onclick="cameraRight()">Camera Left</button>
+		<button onclick="cameraLeft()">Camera Right</button>
+		<button onclick="cameraZoomOut()">Zoom Out</button>
+		<button onclick="cameraZoomIn()">Zoom In</button>
+		<button onclick="cameraRotateLeft()">Camera Rotate Left</button>
+		<button onclick="cameraRotateRight()">Camera Rotate Right</button>
+		<button onclick="cameraPanUp()">Camera Pan Up</button>
+		<button onclick="cameraPanDown()">Camera Pan Down</button>
 	</body>
 </html>
